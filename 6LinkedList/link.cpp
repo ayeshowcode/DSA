@@ -423,6 +423,7 @@ int main()
         cout << "key is not found" << endl;
 
     struct Node *tempimproved;
+    cout << "improved Linear search" << endl;
     tempimproved = ImprovingLinearsearch(head, 3);
     if (tempimproved != NULL)
         cout << "key is found: " << tempimproved->data << endl;

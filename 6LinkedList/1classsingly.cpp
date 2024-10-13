@@ -53,13 +53,27 @@ public:
             p = p->next;
         }
     }
+    void displayrec(Node *p)
+    {
+        if (p)
+        {
+            cout << p->data << " ";
+            displayrec(p->next);
+        }
+    }
+    Node *getFirst()
+    {
+        return first;
+    }
 };
 int main()
 {
     int A[] = {17, 15, 8, 12, 10, 5, 4, 1, 7, 6};
 
     LinkedList ll1(A, 10);
-    cout << "ORIGINAL" << endl;
+    cout << "displaying" << endl;
     ll1.display();
-
+    cout << endl;
+    cout << "displaying recursively" << endl;
+    ll1.displayrec(ll1.getFirst());
 }
