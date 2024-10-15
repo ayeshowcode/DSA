@@ -1,76 +1,69 @@
 #include<iostream>
 using namespace std;
-
 class Queue
 {
-private:
-    int size;
     int front;
     int rear;
-    int *Q;
-
-public:
-    Queue(int size)
+    int *arr;
+    int size;
+    public:
+    Queue()
     {
-        this->size = size;
-        front = rear = -1;
-        Q = new int[size];
+      size=5;
+      arr=new int[size];
+      front = 0;
+      rear = 0;
     }
-
-    ~Queue()
+    bool isEmpty()
     {
-        delete[] Q;
+        if(front==-1 && rear == -1) return true;
+        else return false;
     }
-
-    void enqueue(int x)
+    bool isFull()
     {
-        if (rear == size - 1)
+        if(rear==4)
+        return true;
+        else return false;
+    }
+    void enqueue(int val)
+    {
+        if(rear==size)
+        cout << "Queue is full" << endl;
+        else 
         {
-            cout << "Queue is full" << endl;
-        }
-        else
-        {
+            arr[rear]=val;
             rear++;
-            Q[rear] = x;
         }
     }
     int dequeue()
     {
-        int x = -1;
-        if (front == rear)
+        if(front==rear)
+        return -1;
+        else 
         {
-            cout << "Queue is empty" << endl;
-        }
-        else
-        {
+            arr[front] = -1;
             front++;
-            x = Q[front];
+            if(front==rear)
+            {
+                front = 0;
+                rear = 0;
+            }
         }
-        return x;
     }
-
-    void display()
+    int front()
     {
-        for (int i = front + 1; i <= rear; i++)
-        {
-            cout << Q[i] << " ";
-        }
-        cout << endl;
+        if(front == rear)
+        return true;
+        else return false;
     }
 };
-
 int main()
 {
-    Queue q(5);
+    Queue q;
+    q.enqueue(5);
+    q.enqueue(7);
+    q.enqueue(9);
 
-    q.enqueue(10);
-    q.enqueue(20);
-    q.enqueue(30);
 
-    q.display();
 
-    cout << q.dequeue() << endl;
-    q.display();
-
-    return 0;
 }

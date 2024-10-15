@@ -53,7 +53,6 @@ public:
     {
         if (first == NULL)
             return;
-
         Node *p = first;
         do
         {
@@ -154,7 +153,6 @@ public:
             x = q->data;
             delete q;
         }
-
         return x;
     }
 };
