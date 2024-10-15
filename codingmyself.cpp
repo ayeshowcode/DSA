@@ -1,51 +1,45 @@
+// BACKTRACKING
+
 #include <iostream>
 using namespace std;
-
-int partition(int A[], int l, int h) {
-    int pivot = A[l];  // Use the first element as the pivot
-    int i = l + 1;     // Start i from the element next to pivot
-    int j = h;         // Start j from the last element
-
-    while (true) {
-        // Move i to the right until you find an element greater than pivot
-        while (i <= h && A[i] <= pivot) {
-            i++;
-        }
-        // Move j to the left until you find an element smaller than or equal to pivot
-        while (j >= l && A[j] > pivot) {
-            j--;
-        }
-        // If i and j cross, break the loop
-        if (i >= j) {
-            break;
-        }
-        // Swap A[i] and A[j]
-        swap(A[i], A[j]);
+int countpathwithObstacles(string p, bool *maze[], int r, int c, int dim)
+{
+    if (r == dim - 1 && c == dim - 1)
+    {
+        // cout << p << " ";
+        return 1;
     }
-    // Swap pivot element with A[j] (final position of the pivot)
-    swap(A[l], A[j]);
-    return j;  // Return the partition index
+    if (!maze[r][c])
+        return 1;
+
+    maze[r][c] = false;
+    int count = 0;
+
+    if (r < dim - 1)
+        count += countpathwithObstacles(p + 'D', maze, r + 1, c, dim);
+
+    if (c < dim - 1)
+        count += countpathwithObstacles(p + 'R', maze, r, c + 1, dim);
+    return count;
 }
-
-void quickSort(int A[], int l, int h) {
-    if (l < h) {
-        int j = partition(A, l, h);  // Partition the array
-        quickSort(A, l, j - 1);      // Sort left partition
-        quickSort(A, j + 1, h);      // Sort right partition
+int main()
+{
+    bool **maze;
+    int dim = 5;
+    maze = new bool *[dim];
+    for (int i = 0; i < dim; i++)
+    {
+        maze[i] = new bool[dim];
     }
-}
-
-int main() {
-    int size = 8;
-    int* A = new int[size]{1, 9, 2, 4, 3, 5, 6, 8};
-
-    quickSort(A, 0, size - 1);  // Use size - 1 for correct range
-
-    // Print the sorted array
-    for (int i = 0; i < size; i++) {
-        cout << A[i] << " ";
-    }
-
-    delete[] A;  // Free allocated memory
-    return 0;
+    maze[0][0] = true; maze[0][1] = false; maze[0][2] = false; maze[0][3] = false; maze[0][4] = false;
+    maze[1][0] = true; maze[1][1] = true; maze[1][2] = false; maze[1][3] = false; maze[1][4] = false;
+    maze[2][0] = false; maze[2][1] = true; maze[2][2] = true; maze[2][3] = false; maze[2][4] = false;
+    maze[3][0] = true; maze[3][1] = true; maze[3][2] = true; maze[3][3] = false; maze[3][4] = false;
+    maze[4][0] = false; maze[4][1] = false; maze[4][2] = false; maze[4][3] = true; maze[4][4] = false;
+    // 0 0 0 0 0
+    // 1 1 0 0 0
+    // 0 1 1 0 0
+    // 1 1 1 0 0
+    // 0 0 0 1 0
+    cout << countpathwithObstacles("", maze, 0, 0, dim);
 }

@@ -26,7 +26,6 @@ int partition(int A[], int l, int h) {
     swap(A[l], A[j]);
     return j;  // Return the partition index
 }
-
 void quickSort(int A[], int l, int h) {
     if (l < h) {
         int j = partition(A, l, h);  // Partition the array
