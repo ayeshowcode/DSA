@@ -15,13 +15,13 @@ void create(struct Queue *q, int size)
 }
 void enqueue(struct Queue *q, int x)
 {
-    if(q->rear == q->size-1)
+    if((q->rear+1)%q->size == q->size-1)
     {
         cout<<"Queue is full";
     }
     else
     
-        q->rear++;
+        q->rear=(q->rear+1)%q->size;
         q->Q[q->rear] = x;  
 }
 int dequeue(struct Queue *q)
@@ -33,17 +33,19 @@ int dequeue(struct Queue *q)
     }
     else
     {
-        q->front++;
+        q->front=(q->front+1)%q->size;
         x = q->Q[q->front];
     }
     return x;
 }
 void display(struct Queue q)
 {
-    for(int i = q.front+1; i<=q.rear; i++)
+    int i= q.front+1;
+    do
     {
         cout<<q.Q[i]<<" ";
-    }
+        i=(i+1)%q.size;
+    }while(i!=(q.rear+1)%q.size);
     cout << endl;
 }
 int main()

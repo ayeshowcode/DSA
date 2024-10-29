@@ -26,7 +26,7 @@ void Bubble(int A[], int n)
         if (flag == 0)
             break;
     }
-}
+}   
 
 int main()
 {

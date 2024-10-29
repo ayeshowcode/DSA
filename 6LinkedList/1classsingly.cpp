@@ -49,7 +49,6 @@ public:
         while (p != NULL)
         {
             cout << p->data << " ";
-
             p = p->next;
         }
     }
