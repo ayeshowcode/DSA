@@ -20,7 +20,7 @@ void merge(int A[], int l, int m, int r)
     // Initial indexes of L[], R[], and merged array
     int i = 0, j = 0, k = l;
 
-    // Merge the temporary arrays back into A[l...r]
+    // Merge the temporary arrays back into A[l...r]5
     while (i < n1 && j < n2)
     {
         if (L[i] <= R[j])
