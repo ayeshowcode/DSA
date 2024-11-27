@@ -60,7 +60,7 @@ Node *deleteNode(Node *node, int key)
 int MinValue(Node *root)
 {
     if (root == NULL)
-        return -1;
+        return -1; 
     Node *curr = root;
     while (curr->lchild)
         curr = curr->lchild;
@@ -80,7 +80,7 @@ Node *saerch(Node *node, int key)
     if (node == NULL || node->key == key)
     return node;
     if (node->key < key)
-        saerch(node->rchild, key);
+        return saerch(node->rchild, key);
     return saerch(node->lchild, key);
 }
 int findFloor(Node *node, int key)
@@ -106,7 +106,7 @@ int findCeil(Node *node, int key)
     if (node->key == key)
         return node->key;
     if (node->key < key)
-        findFloor(node->rchild, key);
+        findCeil(node->rchild, key);
 
     ceil = findCeil(node->lchild, key);
 
