@@ -196,7 +196,6 @@ int main()
         case 5: // Exit
             cout << "Exiting the program. Goodbye!\n";
             exit(0);
-
         default:
             cout << "Invalid choice! Please try again.\n";
         }
